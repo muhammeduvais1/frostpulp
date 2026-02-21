@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FROSTPULP — Frozen Fruit Pulp</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Nunito:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="frostpulp-showcase.css">
+</head>
+
+<body>
+
+
+  <!-- TOAST -->
+  <div id="fp-toast"></div>
+
+  <!-- Floating ice crystals -->
+  <div class="crystals" id="crystals"></div>
+
+  <header>
+    <div class="logo">
+      <div class="logo-icon">❄️</div>
+      FROSTPULP
+    </div>
+    <nav>
+      <a onclick="showPage('listing')" id="nav-listing" class="active">Products</a>
+      <a onclick="showPage('inquiry')" id="nav-inquiry">Get a Quote</a>
+      <a onclick="showPage('inquiry')" class="nav-cta">Contact Us</a>
+    </nav>
+  </header>
+
+  <!-- ============ LISTING PAGE ============ -->
+  <div class="page active" id="page-listing">
+    <div class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-eyebrow">❄️ &nbsp; 100% Natural · No Additives · IQF Processed</div>
+      <h1>
+        Pure Tropical Flavors
+        <span class="line2">Frozen at Peak Ripeness</span>
+      </h1>
+      <p>Premium frozen fruit pulps sourced from the world's finest growing regions. Ideal for beverages, desserts, food
+        manufacturing, and culinary applications.</p>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">20+</div>
+          <div class="stat-label">Fruit Varieties</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">-18°C</div>
+          <div class="stat-label">Stored At</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Natural</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">40+</div>
+          <div class="stat-label">Countries Served</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILTERS -->
+    <div class="filter-bar">
+      <span class="filter-label">Filter:</span>
+      <button class="filter-btn active" onclick="filterProducts('all', this)">All</button>
+      <button class="filter-btn" onclick="filterProducts('tropical', this)">Tropical</button>
+      <button class="filter-btn" onclick="filterProducts('citrus', this)">Citrus</button>
+      <button class="filter-btn" onclick="filterProducts('berry', this)">Berry</button>
+      <button class="filter-btn" onclick="filterProducts('exotic', this)">Exotic</button>
+    </div>
+
+    <div class="product-grid" id="product-grid"></div>
+  </div>
+
+  <!-- ============ DETAILS PAGE ============ -->
+  <div class="page" id="page-details">
+    <div class="details-page">
+      <button class="back-btn" onclick="showPage('listing')">← Back to Products</button>
+      <div class="details-grid">
+        <div class="details-visual">
+          <div class="details-image-wrap" id="detail-image-wrap">
+            <div class="details-glow" id="detail-glow"></div>
+            <div class="details-frost"></div>
+            <div class="details-emoji" id="detail-emoji"></div>
+          </div>
+          <div class="thumbnail-row" id="thumb-row"></div>
+        </div>
+        <div class="details-info">
+          <div id="detail-category-tag"></div>
+          <h2 class="details-name" id="detail-name"></h2>
+          <div class="details-latin" id="detail-latin"></div>
+          <div class="rating-row">
+            <div class="stars">★★★★★</div>
+            <div class="rating-count" id="detail-rating"></div>
+          </div>
+          <div class="price-row">
+            <div class="price-main" id="detail-price"></div>
+            <div class="price-per">/kg</div>
+          </div>
+          <div class="price-desc">Minimum order: 100kg · Bulk discounts available</div>
+          <p class="details-desc" id="detail-desc"></p>
+
+          <div class="option-label">Available Sizes</div>
+          <div class="size-options">
+            <button class="size-btn active" onclick="selectSize(this)">100g Sachet</button>
+            <button class="size-btn" onclick="selectSize(this)">1 kg Pack</button>
+            <button class="size-btn" onclick="selectSize(this)">10 kg Box</button>
+            <button class="size-btn" onclick="selectSize(this)">25 kg Bulk</button>
+          </div>
+
+          <div class="specs-grid" id="detail-specs"></div>
+
+          <div class="features" id="detail-features"></div>
+
+          <div class="action-row">
+            <button class="btn-primary" onclick="goToInquiry()">Request Bulk Quote</button>
+            <button class="btn-secondary" onclick="showPage('listing')">Browse More</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ INQUIRY PAGE ============ -->
+  <div class="page" id="page-inquiry">
+    <div class="inquiry-page">
+      <div class="inquiry-header">
+        <div>
+          <h2>Get a <span>Custom Quote</span></h2>
+          <p>Tell us about your requirements and our team will respond within 24 hours with pricing, samples
+            availability, and logistics options.</p>
+        </div>
+        <div class="inquiry-graphic">🥭</div>
+      </div>
+
+      <div id="selected-product-display"></div>
+
+      <div id="inquiry-form-wrap">
+        <div class="form-section-title">Contact Information</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>First Name *</label>
+            <input type="text" id="f-firstname" placeholder="Maria" oninput="liveCheck(this)">
+            <span class="field-err">First name is required</span>
+          </div>
+          <div class="form-group">
+            <label>Last Name *</label>
+            <input type="text" id="f-lastname" placeholder="Santos" oninput="liveCheck(this)">
+            <span class="field-err">Last name is required</span>
+          </div>
+          <div class="form-group">
+            <label>Business Email *</label>
+            <input type="email" id="f-email" placeholder="maria@company.com" oninput="liveCheckEmail(this)">
+            <span class="field-err">Enter a valid email address</span>
+          </div>
+          <div class="form-group">
+            <label>Phone / WhatsApp *</label>
+            <input type="tel" id="f-phone" placeholder="+1 (555) 000-0000" oninput="liveCheck(this)">
+            <span class="field-err">Phone number is required</span>
+          </div>
+          <div class="form-group">
+            <label>Company Name *</label>
+            <input type="text" id="f-company" placeholder="Acme Beverages Ltd." oninput="liveCheck(this)">
+            <span class="field-err">Company name is required</span>
+          </div>
+          <div class="form-group">
+            <label>Country</label>
+            <input type="text" id="f-country" placeholder="United States">
+          </div>
+        </div>
+
+
+
+        <div class="form-submit-row">
+          <button class="submit-btn" onclick="submitForm()">Send Inquiry →</button>
+        </div>
+        <div class="privacy-note">🔒 Your information is confidential and will only be used to respond to your inquiry.
+        </div>
+      </div>
+
+      <div class="success-message" id="success-msg">
+        <div class="success-icon-wrap">✓</div>
+        <h3>Inquiry Sent!</h3>
+        <p>Thank you for reaching out. Our team will review your request<br>and respond within 24 business hours.</p>
+        <button class="btn-primary"
+          style="display:inline-block;width:auto;padding:0.9rem 2rem;border-radius:50px;font-family:Syne,sans-serif;font-weight:700;font-size:0.85rem;background:linear-gradient(135deg,#4ECDC4,#44B8B0);border:none;color:#0D1B2A;cursor:pointer;"
+          onclick="showPage('listing')">← Back to Products</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">❄️ FROSTPULP</div>
+      <div class="footer-links">
+        <span>Quality Certified</span>
+        <span>ISO 22000</span>
+        <span>HACCP</span>
+        <span>Global Kosher</span>
+      </div>
+      <div class="footer-copy">© 2025 FrostPulp International. All rights reserved.</div>
+    </div>
+  </footer>
+  <script src="frostpulp-showcase.js"></script>
+</body>
+
+</html>
